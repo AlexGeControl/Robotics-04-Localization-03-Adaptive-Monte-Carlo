@@ -7,9 +7,6 @@
   <gazebo reference="right_wheel">
     <material>Gazebo/Black</material>
   </gazebo>
-  <gazebo reference="back_wheel">
-    <material>Gazebo/Black</material>
-  </gazebo>
 
   <!-- wheel controller -->
   <gazebo>
@@ -19,9 +16,9 @@
       <updateRate>25</updateRate>
       <leftJoint>left_wheel_hinge</leftJoint>
       <rightJoint>right_wheel_hinge</rightJoint>
-      <wheelSeparation>0.24</wheelSeparation>
+      <wheelSeparation>0.30</wheelSeparation>
       <wheelDiameter>0.10</wheelDiameter>
-      <torque>300</torque>
+      <torque>100</torque>
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
