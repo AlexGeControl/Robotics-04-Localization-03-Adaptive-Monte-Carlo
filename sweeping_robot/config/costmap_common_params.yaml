@@ -5,7 +5,9 @@ raytrace_range: 4.0
 
 transform_tolerance: 0.2
 
-inflation_radius: 0.60
+# set this for circular sweeping robot:
+robot_radius: 0.20
+inflation_radius: 0.40
 
 observation_sources: laser_scan_sensor
 

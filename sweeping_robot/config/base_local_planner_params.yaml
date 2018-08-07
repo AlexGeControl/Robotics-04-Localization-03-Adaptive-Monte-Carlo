@@ -4,27 +4,30 @@ TrajectoryPlannerROS:
 
   holonomic_robot: false
   acc_lim_x: 5.0
-  acc_lim_y: 5.0
+  # set acceleration_y to 0 for differential driver
+  acc_lim_y: 0.0
   acc_lim_theta: 6.28
   max_vel_x: 1.00
-  min_vel_x: 0.10
-  max_vel_y: 1.00
-  min_vel_y: 0.10
+  min_vel_x: 0.10 
+  # set velocity_y to 0 for differential driver
+  max_vel_y: 0.00
+  min_vel_y: 0.00
   escape_vel: -0.10
-  max_vel_theta: +0.785
-  min_vel_theta: -0.785
+  max_vel_theta: +1.570
+  min_vel_theta: -1.570
   min_in_place_vel_theta: 0.0314
 
   controller_frequency: 15.0
   sim_time: 1.0
   sim_granularity: 0.05
-  vx_samples: 10
-  vy_samples: 10
+  vx_samples: 15
+  # set vy_samples to 0 for differential driver
+  vy_samples: 0
   vtheta_samples: 30
 
   meter_scoring: true
-  pdist_scale: 0.5
-  gdist_scale: 1.0
+  pdist_scale: 0.90
+  gdist_scale: 0.60
 
-  yaw_goal_tolerance: 0.15
-  xy_goal_tolerance: 0.1
+  yaw_goal_tolerance: 0.10
+  xy_goal_tolerance: 0.10

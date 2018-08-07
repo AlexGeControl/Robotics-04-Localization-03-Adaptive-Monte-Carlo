@@ -39,9 +39,23 @@ rosrun sweeping_robot navigation_goal
 
 ## Results
 
-Localization & Navigation on the way:
+Localization & Navigation on the way.
+
+To begin, below is the initial estimation of AMCL:
+
+<img src="doc/00-initial-estimation.png" alt="Initial Estimation" width="100%">
+
+After entering the corridor, the estimation began to converge:
+
+<img src="doc/01-inside-corridor-a.png" alt="Inside Corridor, Part A" width="100%">
+
+<img src="doc/01-inside-corridor-b.png" alt="Inside Corridor, Part B" width="100%">
+
+And the robot can successfully navigate itself around the turn:
 
 <img src="doc/02-half-way.png" alt="Half Way to Destination" width="100%">
+
+Finally it successfully reached the neighborhood of destination:
 
 <img src="doc/03-finally.png" alt="Finally" width="100%">
 
