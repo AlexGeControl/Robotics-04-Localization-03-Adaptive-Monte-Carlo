@@ -39,6 +39,14 @@ rosrun sweeping_robot navigation_goal
 
 ## Results
 
+Localization & Navigation on the way:
+
 <img src="doc/02-half-way.png" alt="Half Way to Destination" width="100%">
 
 <img src="doc/03-finally.png" alt="Finally" width="100%">
+
+<img src="doc/04-destination.png" alt="Destination" width="100%">
+
+Terminal status when destination is reached:
+
+<img src="doc/05-terminal-status.png" alt="Terminal Status" width="100%">
