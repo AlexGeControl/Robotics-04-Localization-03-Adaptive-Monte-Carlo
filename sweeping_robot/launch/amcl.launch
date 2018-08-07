@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- map server -->
+  <arg name="map_file" default="$(find sweeping_robot)/maps/jackal_race.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!-- localization-->
+  <node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <!-- laser measurement -->
+    <remap from="scan" to="sweeping_robot/laserscanner/scan"/>
+    <param name="laser_model_type" value="likelihood_field"/>
+    <param name="laser_min_range" value="0.20"/>
+    <param name="laser_max_range" value="5.00"/>
+    <param name="laser_max_beams" value="60"/>
+    <param name="laser_z_hit" value="0.99"/>
+    <param name="laser_z_rand" value="0.01"/>
+    <!-- odometry -->
+    <param name="global_frame_id" value="map"/>
+    <param name="base_frame_id" value="robot_footprint"/>
+    <param name="odom_frame_id" value="odom"/>
+    <param name="odom_model_type" value="diff-corrected"/>
+    <!--
+    <param name="odom_alpha1" value="0.01"/>
+    <param name="odom_alpha2" value="0.01"/>
+    <param name="odom_alpha3" value="0.01"/>
+    <param name="odom_alpha4" value="0.01"/>
+    -->
+    <param name="transform_tolerance" value="0.2"/>
+    <!-- initial pose -->
+    <param name="initial_pose_x" value="0.0"/>
+    <param name="initial_pose_y" value="0.0"/>
+    <param name="initial_pose_a" value="0.0"/>
+    <!-- resampling params -->
+    <param name="min_particles" value="200"/>
+    <param name="max_particles" value="500"/>
+    <!-- adaptive params -->
+    <param name="recovery_alpha_slow" value="0.02"/>
+    <param name="recovery_alpha_fast" value="0.1"/>
+  </node>
+
+  <!-- navigation stack -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find sweeping_robot)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find sweeping_robot)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find sweeping_robot)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find sweeping_robot)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find sweeping_robot)/config/base_local_planner_params.yaml" command="load" />
+    <!-- topic mapping -->
+    <remap from="cmd_vel" to="cmd_vel"/>
+    <remap from="odom" to="odom"/>
+    <remap from="scan" to="sweeping_robot/laserscanner/scan"/>
+    <!-- motion planning -->
+    <param name="base_global_planner" type="string" value="navfn/NavfnROS" />
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+  </node>
+</launch>
